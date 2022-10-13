@@ -101,6 +101,8 @@ export function getLevelQuestions(level: string, questionNum: number) {
 
       case 'N5':
         return !['formacion', 'uso'].includes(x);
+      default:
+        return true;
     }
   });
   const choosen = keys[Math.floor(Math.random() * keys.length)];
