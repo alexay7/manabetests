@@ -12,6 +12,12 @@ export class ExercisesController {
       body.questionNum = 10;
     }
     switch (body.type) {
+      case "exercises":{
+        if(body.skip===undefined || !body.level || body.sections.length<1){
+          throw new BadRequestException()
+        }
+        return this.exercisesService.getExercises(body.level,body.sections[0],body.skip)
+      }
       case 'normal': {
         if (body.category) {
           return this.exercisesService.generateCategoryTest(

@@ -120,4 +120,15 @@ export class ExercisesService {
       })
       .sort({ typePosition: 1 });
   }
+
+  async getExercises(
+    level:string,
+    section:string,
+    skip:number
+  ):Promise<ExerciseDocument[]>{
+    return this.exerciseModel.find({
+      level:level,
+      type:section,
+    }).skip(skip).limit(10);
+  }
 }

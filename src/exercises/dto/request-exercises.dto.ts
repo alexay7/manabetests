@@ -34,4 +34,8 @@ export class ExerciseRequestDto {
   @IsNumber()
   @IsOptional()
   	questionNum: number;
+
+  @IsNumber()
+  @IsOptional()
+    skip:number;
 }
