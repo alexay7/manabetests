@@ -1,3 +1,4 @@
+import { Types } from 'mongoose';
 import {
 	IsString,
 	IsArray,
@@ -38,4 +39,8 @@ export class ExerciseRequestDto {
   @IsNumber()
   @IsOptional()
     skip:number;
+
+  @IsArray()
+  @IsOptional()
+    wrongs:Types.ObjectId[];
 }

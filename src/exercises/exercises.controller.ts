@@ -48,6 +48,14 @@ export class ExercisesController {
           body.period,
         );
       }
+
+      case "retry":{
+        if(!body.wrongs || body.wrongs.length<1){
+          throw new BadRequestException()
+        }
+
+        return this.exercisesService.getWrongExercises(body.wrongs)
+      }
     }
   }
 }

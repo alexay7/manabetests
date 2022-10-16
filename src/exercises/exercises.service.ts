@@ -1,3 +1,4 @@
+import { Types } from 'mongoose';
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
@@ -130,5 +131,14 @@ export class ExercisesService {
       level:level,
       type:section,
     }).skip(skip).limit(10);
+  }
+
+  async getWrongExercises(exercises:Types.ObjectId[]):Promise<ExerciseDocument[]>{
+    const result = []
+    await Promise.all(exercises.map(async (exerciseId)=>{
+      const found = await this.exerciseModel.findById(exerciseId)
+      result.push(found)
+    }))
+    return result
   }
 }
