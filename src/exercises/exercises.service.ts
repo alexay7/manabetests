@@ -127,10 +127,18 @@ export class ExercisesService {
     section:string,
     skip:number
   ):Promise<ExerciseDocument[]>{
-    return this.exerciseModel.find({
+    const totalExercises = await this.exerciseModel.find({
       level:level,
       type:section,
-    }).skip(skip).limit(10);
+    }).countDocuments()
+    if(skip<totalExercises){
+      return this.exerciseModel.find({
+        level:level,
+        type:section,
+      }).skip(skip).limit(10);
+    }else{
+      return this.generateSectionTest(level,[section],10);
+    }
   }
 
   async getWrongExercises(exercises:Types.ObjectId[]):Promise<ExerciseDocument[]>{
