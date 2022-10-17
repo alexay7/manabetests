@@ -149,4 +149,10 @@ export class ExercisesService {
     }))
     return result
   }
+
+  async getOficialExams(level:string){
+    return await this.exerciseModel.aggregate()
+    .match({"level":"N1"})
+    .group({"_id":"$year","info":{"$addToSet":"$period"}})
+  }
 }

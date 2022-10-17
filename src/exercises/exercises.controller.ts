@@ -1,4 +1,4 @@
-import { BadRequestException, Body, Controller, Post } from '@nestjs/common';
+import { BadRequestException, Body, Controller, Get, Param, Post } from '@nestjs/common';
 import { ExerciseRequestDto } from './dto/request-exercises.dto';
 import { ExercisesService } from './exercises.service';
 
@@ -57,5 +57,10 @@ export class ExercisesController {
         return this.exercisesService.getWrongExercises(body.wrongs)
       }
     }
+  }
+
+  @Get("realtests/:level")
+  async getRealTests(@Param("level") level:string){
+    return this.exercisesService.getOficialExams(level)
   }
 }
