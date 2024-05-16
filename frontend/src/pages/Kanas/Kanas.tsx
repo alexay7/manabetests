@@ -75,10 +75,10 @@ export default function Kanas():React.ReactElement{
         }
     },[question,kanaModes]);
 
-    function checkAnswer(e:ChangeEvent<HTMLInputElement>):void{
+    async function checkAnswer(e:ChangeEvent<HTMLInputElement>):Promise<void>{
         e.preventDefault();
 
-        const answer = e.target.value;
+        const answer = e.target.value.toLowerCase();
 
         setAnswer(answer);
 
@@ -91,7 +91,7 @@ export default function Kanas():React.ReactElement{
 
             audio.currentTime = 0.4;
 
-            void audio.play();
+            await audio.play();
 
             if(studyMode){
                 addToAnswers(question.question,!wrong)
