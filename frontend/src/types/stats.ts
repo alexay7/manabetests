@@ -1,0 +1,58 @@
+export interface Stats {
+    N1:{
+        kanji:SectionStats,
+        contexto:SectionStats,
+        parafrases:SectionStats,
+        uso:SectionStats,
+        gramaticafrases:SectionStats,
+        ordenar:SectionStats,
+        passedTimes:number
+    },
+    N2:{
+        kanji:SectionStats,
+        ortografia:SectionStats,
+        formacion:SectionStats,
+        contexto:SectionStats,
+        parafrases:SectionStats,
+        uso:SectionStats,
+        gramaticafrases:SectionStats,
+        ordenar:SectionStats,
+        passedTimes:number
+    },
+    N3:{
+        kanji:SectionStats,
+        ortografia:SectionStats,
+        contexto:SectionStats,
+        parafrases:SectionStats,
+        uso:SectionStats,
+        gramaticafrases:SectionStats,
+        ordenar:SectionStats,
+        passedTimes:number
+    },
+    N4:{
+        kanji:SectionStats,
+        ortografia:SectionStats,
+        contexto:SectionStats,
+        parafrases:SectionStats,
+        uso:SectionStats,
+        gramaticafrases:SectionStats,
+        ordenar:SectionStats,
+        passedTimes:number
+    },
+    N5:{
+        kanji:SectionStats,
+        ortografia:SectionStats,
+        contexto:SectionStats,
+        parafrases:SectionStats,
+        gramaticafrases:SectionStats,
+        ordenar:SectionStats,
+        passedTimes:number
+    },
+}
+
+export interface SectionStats {
+    correct:number,
+    wrong:number,
+    total:number,
+    quantity:number
+}
