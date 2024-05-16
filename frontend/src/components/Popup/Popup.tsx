@@ -119,7 +119,7 @@ function Popup(props:PopupProps):React.ReactElement {
                             )}
                         </div>
                     )}
-                    <button className="w-full text-lg bg-blue-500 border-blue-800 border-2 px-4 py-2 rounded-xl text-white font-semibold"
+                    <button  className="duration-500 w-full bg-main border-2 border-main-dark py-2 px-4 rounded-lg font-semibold hover:bg-white text-white hover:text-main-dark"
                         onClick={()=>{
                             handleParams({level:selected, type:"normal"});
                             navigate("/quiz");

@@ -2,10 +2,12 @@ import React, {useState} from "react";
 
 import Popup from "../../../components/Popup/Popup";
 import {RealTest} from "./RealTest";
+import { useNavigate } from "react-router-dom";
 
 export type PosibleTests = "N5"|"N4"|"N3"|"N2"|"N1"
 
 function DefaultTests():React.ReactElement {
+    const navigate = useNavigate()
     const [selectedTest, setSelectedTest] = useState<PosibleTests|undefined>(undefined);
 
     return (
@@ -17,10 +19,8 @@ function DefaultTests():React.ReactElement {
                 <ul className="flex flex-col gap-4 p-4 bg-white mx-4 rounded-xl shadow-xl select-none w-5/6">
                     <li className="duration-500 cursor-pointer text-white py-4 px-8 bg-[#71BDC7] border-[#4e8a92] border-4 rounded-xl text-center hover:bg-white hover:border-[#71BDC7] hover:text-[#71BDC7] hover:animate-pulse"
                         onClick={()=>{
-                            // Redirect to kanas
-                            console.log("aaa")
-                        }
-                        }
+                            navigate("/kanas")
+                        }}
                     >
                         <p className="text-xl font-bold">KANAS</p>
                     </li>

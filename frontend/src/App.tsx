@@ -6,6 +6,7 @@ import {ToastContainer} from "react-toastify";
 import {TestProvider} from "./contexts/TestContext";
 
 import "react-toastify/dist/ReactToastify.css";
+import { KanasProvider } from "./pages/Kanas/contexts/KanasContext";
 
 const Home = lazy(()=>import("./pages/Home/Home"));
 const Quiz = lazy(()=>import("./pages/Quiz/Quiz"));
@@ -129,7 +130,12 @@ function App():React.ReactElement {
                             <Route path="/" element={<Home/>}/>
                             <Route path="/quiz" element={<Quiz/>}/>
                             <Route path="/results" element={<Results/>}/>
-                            <Route path="kanas" element={<Kanas/>}/>
+                            <Route path="kanas" element={(
+                                <KanasProvider>
+                                    <Kanas/>
+                                </KanasProvider>
+                        )}
+                            />
                         </Routes>
                     </TestProvider>
                 </Suspense>

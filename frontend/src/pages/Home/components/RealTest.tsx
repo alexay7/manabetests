@@ -10,7 +10,7 @@ export function RealTest():React.ReactElement {
     const {handleParams} = useTest();
     const [level, setLevel] = useState("N1");
     const [year, setYear] = useState("2010");
-    const [period, setPeriod] = useState("");
+    const [period, setPeriod] = useState("Julio");
     const [oficialExams, setOficialExams] = useState<{"_id":number, "info":string[]}[]>([]);
 
     const navigate = useNavigate();
@@ -21,7 +21,7 @@ export function RealTest():React.ReactElement {
             toast.error("Debes seleccionar un año y periodo");
             return;
         }
-        handleParams({type:"real", level:level, year:parseInt(year), period:period});
+        handleParams({type:"real", level:level, year:parseInt(year), period:period,questionNum:40});
         navigate("/quiz");
     }
 
@@ -66,7 +66,7 @@ export function RealTest():React.ReactElement {
                     </FormControl>
                 </div>
             )}
-            <button type="submit" className="duration-500 w-full bg-blue-500 border-2 border-blue-700 py-2 px-4 rounded-lg text-white font-semibold hover:bg-white hover:text-blue-500 hover:border-blue-500">はじめる</button>
+            <button type="submit" className="duration-500 w-full bg-main border-2 border-main-dark py-2 px-4 rounded-lg font-semibold hover:bg-white text-white hover:text-main-dark">はじめる</button>
         </form>
     );
 }

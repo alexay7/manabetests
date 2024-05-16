@@ -14,8 +14,7 @@ export function Exercises():React.ReactElement {
     const [statsCode, setStatsCode] = useState("");
     const [selectedLevel, setSelectedLevel] = useState(window.localStorage.getItem("lastlevel") || "N5");
 
-    // eslint-disable-next-line 
-    const parsedStats:Stats = JSON.parse(stats || "");
+    const parsedStats:Stats = JSON.parse(stats || "") as Stats;
 
     const navigate = useNavigate();
 
@@ -37,8 +36,7 @@ export function Exercises():React.ReactElement {
         e.preventDefault();
         const response = await fetch(`${process.env.REACT_APP_API_URL}/codes/${statsCode}`, {method:"GET"});
         if (response.status === 200) {
-            // eslint-disable-next-line 
-            const data = await response.json();
+            const data = await response.json() as {encodedStats:string, encodedWrong:string};
             const stringifiedStats = atob(data.encodedStats);
             const stringifiedWrong = atob(data.encodedWrong);
             window.localStorage.setItem("stats", stringifiedStats);

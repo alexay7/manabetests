@@ -409,7 +409,7 @@ export const KanaModes = {
                 audio:"n",
             },
         },
-        "hiradakuten-g":{
+        "hiraadakuten-g":{
             "が": {
                 answers:["ga"],
                 audio:"ga"
@@ -431,7 +431,7 @@ export const KanaModes = {
                 audio:"go"
             },
         },
-        "katadakuten-g":{
+        "kataadakuten-g":{
             "ガ": {
                 answers:["ga"],
                 audio:"ga"
@@ -453,7 +453,7 @@ export const KanaModes = {
                 audio:"go"
             },
         },
-        "hiradakuten-z":{
+        "hiraadakuten-z":{
             "ざ": {
                 answers:["za"],
                 audio:"za"
@@ -475,7 +475,7 @@ export const KanaModes = {
                 audio:"zo"
             },
         },
-        "katadakuten-z":{
+        "kataadakuten-z":{
             "ザ": {
                 answers:["za"],
                 audio:"za"
@@ -497,7 +497,7 @@ export const KanaModes = {
                 audio:"zo"
             },
         },
-        "hiradakuten-d":{
+        "hiraadakuten-d":{
             "だ": {
                 answers:["da"],
                 audio:"da"
@@ -519,7 +519,7 @@ export const KanaModes = {
                 audio:"do"
             },
         },
-        "katadakuten-d":{
+        "kataadakuten-d":{
             "ダ": {
                 answers:["da"],
                 audio:"da"
@@ -541,7 +541,7 @@ export const KanaModes = {
                 audio:"do"
             },
         },
-        "hiradakuten-b":{
+        "hiraadakuten-b":{
             "ば": {
                 answers:["ba"],
                 audio:"ba",
@@ -563,7 +563,7 @@ export const KanaModes = {
                 audio:"bo",
             },
         },
-        "katadakuten-b":{
+        "kataadakuten-b":{
             "バ": {
                 answers:["ba"],
                 audio:"ba",
@@ -585,7 +585,7 @@ export const KanaModes = {
                 audio:"bo",
             },
         },
-        "hiradakuten-p":{
+        "hiraadakuten-p":{
             "ぱ": {
                 answers:["pa"],
                 audio:"pa"
@@ -607,7 +607,7 @@ export const KanaModes = {
                 audio:"po"
             },
         },
-        "katadakuten-p":{
+        "kataadakuten-p":{
             "パ": {
                 answers:["pa"],
                 audio:"pa"

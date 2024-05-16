@@ -1,6 +1,6 @@
-import React from "react";
+import React, { LiHTMLAttributes } from "react";
 
-interface AnswerButtonProps extends React.LiHTMLAttributes<HTMLLIElement> {
+interface AnswerButtonProps extends LiHTMLAttributes<HTMLLIElement> {
     text:string;
     correct?:boolean
     incorrect?:boolean;

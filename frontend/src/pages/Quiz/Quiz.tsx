@@ -35,8 +35,8 @@ function Quiz():React.ReactElement {
 
             if (params?.type === "exercises") {
                 if (!params.level || !params.sections || !params.sections[0]) return;
-                // eslint-disable-next-line 
-                const parsedStats:Stats = JSON.parse(stats);
+
+                const parsedStats = JSON.parse(stats) as Stats;
                 const level = params.level as keyof Stats;
                 const levelStats = parsedStats[level];
                 const section = params.sections[0] as keyof typeof levelStats;
@@ -46,9 +46,10 @@ function Quiz():React.ReactElement {
                 }
             } else if (params.type === "retry") {
                 const wrongAnswers = window.localStorage.getItem("wrong");
+
                 if (!wrongAnswers || !params.level || !params.sections) return;
-                // eslint-disable-next-line 
-                const parsedWrong:Wrong = JSON.parse(wrongAnswers);
+
+                const parsedWrong = JSON.parse(wrongAnswers) as Wrong;
                 const parsedLevel = parsedWrong[params.level as "N1" | "N2" | "N3" | "N4" | "N5"];
                 const wrongArray = parsedWrong[params.level as "N1" | "N2" | "N3" | "N4" | "N5"][params.sections[0] as keyof typeof parsedLevel];
                 if (wrongArray.length < 1) {
@@ -89,8 +90,9 @@ function Quiz():React.ReactElement {
                 // REMOVE WRONG QUESTION FROM ARRAY
                 const wrong = window.localStorage.getItem("wrong");
                 if (!wrong || !params?.level) return;
-                // eslint-disable-next-line 
-                const parsedWrong:Wrong = JSON.parse(wrong);
+
+                const parsedWrong = JSON.parse(wrong) as Wrong;
+
                 const parsedLevel = parsedWrong[params.level as "N1" | "N2" | "N3" | "N4" | "N5"];
                 parsedWrong[params.level as "N1" | "N2" | "N3" | "N4" | "N5"][questions[currentQuestion].type as keyof typeof parsedLevel] = parsedWrong[params.level as "N1" | "N2" | "N3" | "N4" | "N5"][questions[currentQuestion].type as keyof typeof parsedLevel].filter((x)=>x !== questions[currentQuestion]._id);
                 window.localStorage.setItem("wrong", JSON.stringify(parsedWrong));
@@ -99,8 +101,8 @@ function Quiz():React.ReactElement {
                 const stats = window.localStorage.getItem("stats");
                 if (!stats) return;
 
-                // eslint-disable-next-line 
-                const parsedStats:Stats = JSON.parse(stats);
+
+                const parsedStats:Stats = JSON.parse(stats) as Stats;
                 const level = params.level as keyof Stats;
                 const levelStats = parsedStats[level];
                 const section = questions[currentQuestion].type as keyof typeof levelStats;
@@ -115,8 +117,8 @@ function Quiz():React.ReactElement {
             const stats = window.localStorage.getItem("stats");
             if (!stats) return;
 
-            // eslint-disable-next-line 
-            const parsedStats:Stats = JSON.parse(stats);
+
+            const parsedStats = JSON.parse(stats) as Stats;
             const level = params.level as keyof Stats;
             const levelStats = parsedStats[level];
             const section = params.sections[0] as keyof typeof levelStats;
@@ -143,8 +145,8 @@ function Quiz():React.ReactElement {
             const wrong = window.localStorage.getItem("wrong");
             if (!wrong || !params?.level) return;
 
-            // eslint-disable-next-line 
-            const parsedWrong:Wrong = JSON.parse(wrong);
+
+            const parsedWrong = JSON.parse(wrong) as Wrong;
             const parsedLevel = parsedWrong[params.level as "N1" | "N2" | "N3" | "N4" | "N5"];
             if (!parsedWrong[params.level as "N1" | "N2" | "N3" | "N4" | "N5"][questions[currentQuestion].type as keyof typeof parsedLevel]) {
                 parsedWrong[params.level as "N1" | "N2" | "N3" | "N4" | "N5"][questions[currentQuestion].type as keyof typeof parsedLevel] = [];
