@@ -36,7 +36,7 @@ export function KanasProvider({children}:KanasProviderProps):React.ReactElement 
                     return
                 }
 
-                setTimeLeft((prev)=>prev-10)
+                setTimeLeft((prev)=>prev-1)
             },1000)
             return ()=>clearInterval(interval)
         }
