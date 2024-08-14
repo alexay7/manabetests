@@ -1,5 +1,5 @@
 import { BadRequestException, Body, Controller, Get, Param, Post } from '@nestjs/common';
-import { ExerciseRequestDto } from './dto/request-exercises.dto';
+import { ExerciseRequestDto, RequestCorrectionDto } from './dto/request-exercises.dto';
 import { ExercisesService } from './exercises.service';
 
 @Controller('exercises')
@@ -17,6 +17,12 @@ export class ExercisesController {
           throw new BadRequestException()
         }
         return this.exercisesService.getExercises(body.level,body.sections[0],body.skip)
+      }
+      case "casireal":{
+        if(!body.level){
+          throw new BadRequestException()
+        }
+        return this.exercisesService.generateRealishTest(body.level)
       }
       case 'normal': {
         if (body.category) {

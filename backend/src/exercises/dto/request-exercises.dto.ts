@@ -5,6 +5,7 @@ import {
 	IsNotEmpty,
 	IsNumber,
 	IsOptional,
+  IsObject,
 } from "class-validator";
 
 export class ExerciseRequestDto {
@@ -43,4 +44,23 @@ export class ExerciseRequestDto {
   @IsArray()
   @IsOptional()
     wrongs:Types.ObjectId[];
+}
+
+export class RequestCorrectionDto {
+  @IsArray()
+  sectionAnswers: {
+    section:string,
+    answers:(
+      {
+      questionId:Types.ObjectId,
+      type:"normal",
+      answer:number
+    }|
+      {
+      questionId:Types.ObjectId,
+      type:"extra",
+      answer:Record<number,number>
+    }
+  )[]
+  }[]
 }

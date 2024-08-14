@@ -10,5 +10,6 @@ import { ExerciseSchema } from './schemas/exercise.schema';
   ],
   providers: [ExercisesService],
   controllers: [ExercisesController],
+  exports: [ExercisesService]
 })
 export class ExercisesModule {}

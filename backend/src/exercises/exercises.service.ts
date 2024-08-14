@@ -1,8 +1,9 @@
+import { Diagnostic } from './../../../mocksfrontend/node_modules/typescript/lib/typescript.d';
 import { Types } from 'mongoose';
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
-import { getLevelQuestions } from 'src/helpers/helper';
+import { getLevelQuestions, getRealExamQuestionNum } from 'src/helpers/helper';
 import { Exercise } from './interfaces/exercise.interface';
 import { ExerciseDocument } from './schemas/exercise.schema';
 
@@ -29,13 +30,18 @@ export class ExercisesService {
     level: string,
     sections: string[],
     questionNum: number,
+    hideAnswers?: boolean,
   ): Promise<ExerciseDocument[]> {
-    return this.exerciseModel
+    const pipe = this.exerciseModel
       .aggregate()
       .match({ level: level, type: { $in: sections } })
       .sample(questionNum)
       .group({ _id: '$_id', result: { $push: '$$ROOT' } })
       .replaceRoot({ $first: '$result' });
+
+    if (hideAnswers) return pipe.project({correct:0,explanation:0})
+
+    return pipe;
   }
 
   async generateRandomTest(level: string, questionNum: number) {
@@ -154,5 +160,88 @@ export class ExercisesService {
     return await this.exerciseModel.aggregate()
     .match({"level":"N1"})
     .group({"_id":"$year","info":{"$addToSet":"$period"}})
+  }
+
+  async generateRealishTest(level:string):Promise<ExerciseDocument[]>{
+    const distributions = getRealExamQuestionNum(level)
+
+    const kanjiQuestions = await this.generateSectionTest(
+      level,
+      ['kanji'],
+      distributions.kanji,
+      true
+    );
+
+    const parafrasesQuestions = await this.generateSectionTest(
+      level,
+      ['parafrases'],
+      distributions.parafrases,
+      true
+    );
+    
+    let ortografiaQuestions = await this.generateSectionTest(
+      level,
+      ['ortografia'],
+      distributions.ortografia,
+      true
+    );
+
+    const ordenarQuestions = await this.generateSectionTest(
+      level,
+      ['ordenar'],
+      distributions.ordenar,
+      true
+    );
+
+    const usoQuestions = await this.generateSectionTest(
+      level,
+      ['uso'],
+      distributions.uso,
+      true
+    );
+
+    const gramaticafrasesQuestions = await this.generateSectionTest(
+      level,
+      ['gramaticafrases'],
+      distributions.gramaticafrases,
+      true
+    );
+
+    const formacionQuestions = await this.generateSectionTest(
+      level,
+      ['formacion'],
+      distributions.formacion,
+      true
+    );
+
+    const contextoQuestions = await this.generateSectionTest(
+      level,
+      ['contexto'],
+      distributions.contexto,
+      true
+    );
+
+    return kanjiQuestions
+      .concat(parafrasesQuestions)
+      .concat(ortografiaQuestions)
+      .concat(formacionQuestions)
+      .concat(contextoQuestions)
+      .concat(usoQuestions)
+      .concat(gramaticafrasesQuestions)
+      .concat(ordenarQuestions);
+  }
+
+  async batchCorrectExercises(answers:{questionId:Types.ObjectId,answer:number}[]){
+    const result = []
+    await Promise.all(answers.map(async (answer)=>{
+      const found = await this.exerciseModel.findById(answer.questionId)
+      if(found.correct === answer.answer){
+        result.push({questionId:answer.questionId,correct:true,explanation:found.explanation,type:found.type})
+      }else{
+        result.push({questionId:answer.questionId,correct:false,explanation:found.explanation,type:found.type})
+      }
+    }))
+
+    return result
   }
 }

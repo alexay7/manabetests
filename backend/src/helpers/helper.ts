@@ -110,3 +110,127 @@ export function getLevelQuestions(level: string, questionNum: number) {
 
   return response;
 }
+
+export function getRealExamQuestionNum(level:string){
+  const response ={
+    kanji:0,
+    ortografia:0,
+    formacion:0,
+    contexto:0,
+    parafrases:0,
+    uso:0,
+    gramaticafrases:0,
+    ordenar:0,
+    gramaticatexto:0,
+    textoscortos:0,
+		textosmedios:0,
+		textoslargos:0,
+		textosintegrados:0,
+		textostematicos:0,
+		textosinformacion:0,
+		tareas:0,
+		puntosclave:0,
+		comprensiongeneral:0,
+		expresiones:0,
+		respuestarapida:0,
+		comprensionintegrada:0
+  }
+
+  switch(level){
+    case "N1":
+      response.kanji = 6;
+      response.contexto = 7;
+      response.parafrases = 6;
+      response.uso = 6;
+      response.gramaticafrases = 10;
+      response.ordenar = 5;
+      response.gramaticatexto = 1;
+      response.textoscortos = 4;
+      response.textosmedios = 3;
+      response.textoslargos = 1;
+      response.textosintegrados = 1;
+      response.textostematicos = 1;
+      response.textosinformacion = 1;
+      response.tareas = 1;
+      response.puntosclave = 1;
+      response.comprensiongeneral = 1;
+      response.respuestarapida = 1;
+      response.comprensionintegrada = 1;
+      break;
+    case "N2":
+      response.kanji = 5;
+      response.ortografia = 5;
+      response.formacion = 5;
+      response.contexto = 7;
+      response.parafrases = 5;
+      response.uso = 5;
+      response.gramaticafrases = 12;
+      response.ordenar = 5;
+      response.gramaticatexto = 1;
+      response.textoscortos = 5;
+      response.textosmedios = 3;
+      response.textosintegrados = 1;
+      response.textostematicos = 1;
+      response.textosinformacion = 1;
+      response.tareas = 1;
+      response.puntosclave = 1;
+      response.comprensiongeneral = 1;
+      response.respuestarapida = 1;
+      response.comprensionintegrada = 1;
+      break;
+    case "N3":
+      response.kanji = 8;
+      response.ortografia = 6;
+      response.contexto = 11;
+      response.parafrases = 5;
+      response.uso = 5;
+      response.gramaticafrases = 13;
+      response.ordenar = 5;
+      response.gramaticatexto = 1;
+      response.textoscortos = 4;
+      response.textosmedios = 2;
+      response.textoslargos = 1;
+      response.textosinformacion = 1;
+      response.tareas = 1;
+      response.puntosclave = 1;
+      response.comprensiongeneral = 1;
+      response.expresiones = 1;
+      response.respuestarapida = 1;
+      break;
+    case "N4":
+      response.kanji = 9;
+      response.ortografia = 6;
+      response.contexto = 10;
+      response.parafrases = 5;
+      response.uso = 5;
+      response.gramaticafrases = 15;
+      response.ordenar = 5;
+      response.gramaticatexto = 1;
+      response.textoscortos = 4;
+      response.textosmedios = 1;
+      response.textosinformacion = 1;
+      response.tareas = 1;
+      response.puntosclave = 1;
+      response.expresiones = 1;
+      response.respuestarapida = 1;
+      break;
+    case "N5":
+      response.kanji = 12;
+      response.ortografia = 8;
+      response.contexto = 10;
+      response.parafrases = 5;
+      response.gramaticafrases = 16;
+      response.ordenar = 5;
+      response.gramaticatexto = 1;
+      response.textoscortos = 3;
+      response.textosmedios = 1;
+      response.textosinformacion = 1;
+      response.tareas = 1;
+      response.puntosclave = 1;
+      response.expresiones = 1;
+      response.respuestarapida = 1;
+      break;
+  }
+
+  return response;
+}

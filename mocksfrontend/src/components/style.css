@@ -1,0 +1,65 @@
+body .sound-wave {
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+body .sound-wave .bar {
+  animation-name: wave-lg;
+  animation-iteration-count: infinite;
+  animation-timing-function: ease-in-out;
+  animation-direction: alternate;
+  background: var(--primary-color);
+  margin: 0 1.5px;
+  height: 10px;
+  width: 2px;
+  border-radius: 50%;
+}
+
+body .sound-wave .bar:nth-child(-n + 7),
+body .sound-wave .bar:nth-last-child(-n + 7) {
+  animation-name: wave-md;
+}
+
+body .sound-wave .bar:nth-child(-n + 3),
+body .sound-wave .bar:nth-last-child(-n + 3) {
+  animation-name: wave-sm;
+}
+
+.stop {
+  animation-play-state: paused;
+}
+
+@keyframes wave-sm {
+  0% {
+    opacity: 0.35;
+    height: 10px;
+  }
+  100% {
+    opacity: 1;
+    height: 25px;
+  }
+}
+
+@keyframes wave-md {
+  0% {
+    opacity: 0.35;
+    height: 15px;
+  }
+  100% {
+    opacity: 1;
+    height: 30px;
+  }
+}
+
+@keyframes wave-lg {
+  0% {
+    opacity: 0.35;
+    height: 15px;
+  }
+  100% {
+    opacity: 1;
+    height: 30px;
+  }
+}
