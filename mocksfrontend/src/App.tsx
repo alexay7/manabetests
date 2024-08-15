@@ -13,11 +13,12 @@ import { useUserStore } from '@/stores/user'
 
 import DiscordIcon from "@/assets/discord.svg?react";
 import ManabeIcon from "@/assets/manabe.svg?react";
+import KonamiCode from '@/components/KonamiCode'
 
 export default function App() {
 	const navigate = useNavigate()
 
-	const { setExam, setSection, setSettings, resetExam } = useExamStore()
+	const { setExam, setSection, modifySetting, resetExam } = useExamStore()
 	const {username,setUsername,setLastLevel,setLastStrict,lastLevel,lastStrict}=useUserStore()
 
 	const [level, setLevel] = useState<Exercise["level"]>(lastLevel||"N5")
@@ -84,7 +85,7 @@ export default function App() {
 
 		setExam({ sections, gradingSections, level: level })
 		setSection(1)
-		setSettings({ strict })
+		modifySetting("strict",strict)
 
 		setLastLevel(level)
 		setLastStrict(strict)
@@ -151,6 +152,7 @@ export default function App() {
 			</a>
 			</div>
 			</div>
+			<KonamiCode/>
 		</div>
 	)
 }

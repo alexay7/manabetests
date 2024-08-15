@@ -5,7 +5,8 @@ import { Exercise } from "../types/exercises";
 import { getQuestionSection } from "../helpers/exercises";
 
 export type ExamSettings={
-	strict:boolean
+	strict:boolean,
+	expertMode?:boolean
 }
 
 type ExamStore = {
@@ -25,7 +26,7 @@ type ExamStore = {
 	setBreakForSection:(breakForSection:number|undefined)=>void;
 
 	settings:ExamSettings;
-	setSettings:(settings:ExamSettings)=>void;
+	modifySetting: (setting: keyof ExamSettings, value: boolean) => void;
 
 	sectionTime:Date|undefined;
 	setSectionTime:(sectionTime:Date|undefined)=>void;
@@ -110,8 +111,12 @@ export const useExamStore = create(persist<ExamStore>((set,get) => ({
 	settings:{
 		strict:false
 	},
-	setSettings:(settings)=>{
-		set({settings})
+	modifySetting: (setting, value)=>{
+		set((state)=>{
+			const settings = state.settings
+			settings[setting]=value
+			return {settings}
+		})
 	},
 	sectionTime:undefined,
 	setSectionTime:(sectionTime)=>{

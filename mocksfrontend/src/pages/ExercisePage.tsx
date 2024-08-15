@@ -13,7 +13,7 @@ interface ExerciseProps{
 }
 
 export default function ExercisePage({exercises,index,previousExercises}:ExerciseProps):React.ReactElement{
-	const {exam,section}= useExamStore()
+	const {exam,section,settings}= useExamStore()
 	const {setAudio}=useAudioStore()
 
 	const [exampleExercise] = exercises;
@@ -68,7 +68,7 @@ export default function ExercisePage({exercises,index,previousExercises}:Exercis
 								</div>
 								<ul className="flex flex-wrap gap-x-8 gap-y-2">
 									{Children.toArray(question.answers.map((answer,ansI)=>(
-										<li className="group">
+										<li className="text-base">
 											<p style={{textDecorationThickness:"2px"}} className={twMerge("flex gap-2",(exam.sections[section].answers[question._id]===ansI+1 ? "underline":""))}><span>{ansI+1}</span> {answer}</p>
 										</li>
 									)))}
@@ -85,11 +85,11 @@ export default function ExercisePage({exercises,index,previousExercises}:Exercis
 				<div className="flex gap-4 items-center">
 					<span className="border px-2 border-solid border-gray-700 text-xs font-semibold">{exercise.index-previousExercises+1}</span>
 					{exercise.image && <img src={exercise.image} alt=""/>}
-					<p className="question underline-offset-2 font-semibold"><span>{renderQuestionLabel(exercise.question)}</span></p>
+					<p className="question underline-offset-2 font-medium"><span>{renderQuestionLabel(exercise.question)}</span></p>
 				</div>
 				<ul className="flex flex-wrap gap-x-8 gap-y-2">
 					{Children.toArray(exercise.answers.map((answer,ansI)=>(
-						<li>
+						<li className="text-base">
 							<p style={{textDecorationThickness:"2px"}} className={twMerge("flex gap-2",(exam.sections[section].answers[exercise._id]===ansI+1 ? "underline":""))}><span>{ansI+1}</span> {answer}</p>
 						</li>
 					)))}
@@ -113,7 +113,7 @@ export default function ExercisePage({exercises,index,previousExercises}:Exercis
 	},[exercises,setAudio])
 
 	return(
-		<li className="flex flex-col gap-4">
+		<li className="flex flex-col gap-4" style={{fontFamily:settings.expertMode?'Tamanegi_Geki':""}}>
 			<h2 className="font-semibold text-xl">問題 {index}: {getExerciseQuestion(type)}</h2>
 			<ul className="flex flex-col gap-3 font-normal text-lg divide-y">
 				{Children.toArray(exercises.map(renderExercise))}

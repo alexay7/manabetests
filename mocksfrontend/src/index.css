@@ -62,7 +62,22 @@
 
 @font-face {
   font-family: "Handwritten";
-  src: url("newfrench.ttf");
+  src: local("newfrench"), url("./assets/fonts/newfrench.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Handwritten2";
+  src: local("Mansalva-Regular"), url("./assets/fonts/Mansalva-Regular.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "NotoSansJP";
+  src: local("NotoSansJP-VariableFont_wght"), url("./assets/fonts/NotoSansJP-VariableFont_wght.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Tamanegi_Geki";
+  src: local("Tamanegi_Geki"), url("./assets/fonts/Tamanegi_Geki.ttf") format("truetype");
 }
 
 @layer base {
@@ -75,7 +90,7 @@
 }
 
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-family: "NotoSansJP", Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-size: 1rem;
 }

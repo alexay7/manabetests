@@ -342,7 +342,7 @@ export default function Section({ section }: SectionProps): React.ReactElement {
 						<ExercisePage previousExercises={getPreviousExerciseNumber(exam)} exercises={section.questions[page].exercises} index={page + 1} />
 					</ul>
 					<div className="flex justify-around text-white items-center py-2">
-						<Button className={twMerge("text-sm", page === 0 ? "invisible" : "visible")} onClick={() => {
+						<Button variant={(settings.strict&&playing) ? "destructive":"default"} className={twMerge("text-sm", page === 0 ? "invisible" : "visible")} onClick={() => {
 							if (playing) {
 								if (settings.strict && confirm("El audio no ha terminado, ¿estás seguro?")) {
 									setPage(page - 1)
@@ -353,7 +353,7 @@ export default function Section({ section }: SectionProps): React.ReactElement {
 							}
 							setPage(page - 1)
 						}} disabled={page === 0}>Página anterior</Button>
-						<Button className={twMerge("text-sm", page >= section.questions.length - 1 ? "hidden" : "block")} onClick={() => {
+						<Button variant={(settings.strict&&playing) ? "destructive":"default"} className={twMerge("text-sm", page >= section.questions.length - 1 ? "hidden" : "block")} onClick={() => {
 							if (playing) {
 								if (settings.strict && confirm("El audio no ha terminado, ¿estás seguro?")) {
 									setPage(page + 1)
