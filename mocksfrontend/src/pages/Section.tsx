@@ -298,22 +298,26 @@ export default function Section({ section }: SectionProps): React.ReactElement {
 				vocab: {
 					points: results.vocab.points,
 					exercises: results.vocab.exercises,
-					goodExercises: results.vocab.goodExercises
+					goodExercises: results.vocab.goodExercises,
+					questions:results.vocab.questions||[]
 				},
 				grammar: {
 					points: results.grammar.points,
 					exercises: results.grammar.exercises,
-					goodExercises: results.grammar.goodExercises
+					goodExercises: results.grammar.goodExercises,
+					questions:results.grammar.questions||[]
 				},
 				reading: {
 					points: results.reading.points,
 					exercises: results.reading.exercises,
-					goodExercises: results.reading.goodExercises
+					goodExercises: results.reading.goodExercises,
+					questions:results.reading.questions||[]
 				},
 				listening: {
 					points: results.listening.points,
 					exercises: results.listening.exercises,
-					goodExercises: results.listening.goodExercises
+					goodExercises: results.listening.goodExercises,
+					questions:results.listening.questions||[]
 				}
 			}
 

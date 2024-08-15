@@ -40,9 +40,13 @@ export type ExamSectionAnswers = {
 export type ExamSectionExerciseCorrected = {
     type:keyof typeof pointsPerExercise["N1"];
     questionId:string,
-    correct:boolean,
+    isCorrect:boolean,
+    correct:number,
+    answers:string[],
     points:number,
-    explanation?:string
+    question:string,
+    explanation?:string,
+    answered:number
 }
 
 export type ExamSectionCorrected ={

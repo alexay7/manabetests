@@ -25,6 +25,7 @@ export default function App() {
 	const [strict, setStrict] = useState(lastStrict||false)
 
 	useEffect(() => {
+		modifySetting("expertMode", false)
 		resetExam()
 	}, [resetExam])
 

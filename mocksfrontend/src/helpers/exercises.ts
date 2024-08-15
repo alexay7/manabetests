@@ -490,27 +490,31 @@ export function gradeExam(exam:Exam,correctedExam:ExamSectionCorrected[]){
 		vocab:{
 			points:0,
 			goodExercises:0,
-			exercises:totalVocabExercises.length
+			exercises:totalVocabExercises.length,
+			questions:vocab?.corrections
 		},
 		grammar:{
 			points:0,
 			goodExercises:0,
-			exercises:totalGrammarExercises.length
+			exercises:totalGrammarExercises.length,
+			questions:grammar?.corrections
 		},
 		reading:{
 			points:0,
 			goodExercises:0,
-			exercises:totalReadExercises.length
+			exercises:totalReadExercises.length,
+			questions:read?.corrections
 		},
 		listening:{
 			points:0,
 			goodExercises:0,
-			exercises:totalListenExercises.length
+			exercises:totalListenExercises.length,
+			questions:listen?.corrections
 		}
 	}
 
 	const vocabPoints = vocab.corrections.reduce((acc,question)=>{
-		if(question.correct){
+		if(question.isCorrect){
 
 			return (pointsPerExercise[exam.level][question.type]/groupedExercises[question.type].length)+acc;
 		}
@@ -518,7 +522,7 @@ export function gradeExam(exam:Exam,correctedExam:ExamSectionCorrected[]){
 	},0);
 
 	const grammarPoints = grammar.corrections.reduce((acc,question)=>{
-		if(question.correct){
+		if(question.isCorrect){
 
 			return (pointsPerExercise[exam.level][question.type]/groupedExercises[question.type].length)+acc;
 		}
@@ -526,7 +530,7 @@ export function gradeExam(exam:Exam,correctedExam:ExamSectionCorrected[]){
 	},0);
 
 	const readPoints = read.corrections.reduce((acc,question)=>{
-		if(question.correct){
+		if(question.isCorrect){
 
 			return (pointsPerExercise[exam.level][question.type]/groupedExercises[question.type].length)+acc;
 		}
@@ -534,7 +538,7 @@ export function gradeExam(exam:Exam,correctedExam:ExamSectionCorrected[]){
 	},0);
 
 	const listenPoints = listen.corrections.reduce((acc,question)=>{
-		if(question.correct){
+		if(question.isCorrect){
 
 			return (pointsPerExercise[exam.level][question.type]/groupedExercises[question.type].length)+acc;
 		}
@@ -544,23 +548,27 @@ export function gradeExam(exam:Exam,correctedExam:ExamSectionCorrected[]){
 	return {
 		vocab:{
 			points:vocabPoints,
-			goodExercises:vocab.corrections.reduce((acc,question)=>question.correct?acc+1:acc,0),
-			exercises:totalVocabExercises.length
+			goodExercises:vocab.corrections.reduce((acc,question)=>question.isCorrect?acc+1:acc,0),
+			exercises:totalVocabExercises.length,
+			questions:vocab?.corrections
 		},
 		grammar:{
 			points:grammarPoints,
-			goodExercises:grammar.corrections.reduce((acc,question)=>question.correct?acc+1:acc,0),
-			exercises:totalGrammarExercises.length
+			goodExercises:grammar.corrections.reduce((acc,question)=>question.isCorrect?acc+1:acc,0),
+			exercises:totalGrammarExercises.length,
+			questions:grammar?.corrections
 		},
 		reading:{
 			points:readPoints,
-			goodExercises:read.corrections.reduce((acc,question)=>question.correct?acc+1:acc,0),
-			exercises:totalReadExercises.length
+			goodExercises:read.corrections.reduce((acc,question)=>question.isCorrect?acc+1:acc,0),
+			exercises:totalReadExercises.length,
+			questions:read?.corrections
 		},
 		listening:{
 			points:listenPoints,
-			goodExercises:listen.corrections.reduce((acc,question)=>question.correct?acc+1:acc,0),
-			exercises:totalListenExercises.length
+			goodExercises:listen.corrections.reduce((acc,question)=>question.isCorrect?acc+1:acc,0),
+			exercises:totalListenExercises.length,
+			questions:listen?.corrections
 		}
 	}
 }

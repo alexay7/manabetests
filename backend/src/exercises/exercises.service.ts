@@ -236,9 +236,9 @@ export class ExercisesService {
     await Promise.all(answers.map(async (answer)=>{
       const found = await this.exerciseModel.findById(answer.questionId)
       if(found.correct === answer.answer){
-        result.push({questionId:answer.questionId,correct:true,explanation:found.explanation,type:found.type})
+        result.push({questionId:answer.questionId,isCorrect:true,explanation:found.explanation,type:found.type,question:found.question,answers:found.answers,correct:found.correct,answered:answer.answer})
       }else{
-        result.push({questionId:answer.questionId,correct:false,explanation:found.explanation,type:found.type})
+        result.push({questionId:answer.questionId,isCorrect:false,explanation:found.explanation,type:found.type,question:found.question,answers:found.answers,correct:found.correct,answered:answer.answer})
       }
     }))
 

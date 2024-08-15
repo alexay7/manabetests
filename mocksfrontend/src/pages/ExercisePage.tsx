@@ -113,7 +113,7 @@ export default function ExercisePage({exercises,index,previousExercises}:Exercis
 	},[exercises,setAudio])
 
 	return(
-		<li className="flex flex-col gap-4" style={{fontFamily:settings.expertMode?'Tamanegi_Geki':""}}>
+		<li className="flex flex-col gap-4" style={{fontFamily:settings.expertMode?'Tamanegi_Geki':"Arial"}}>
 			<h2 className="font-semibold text-xl">問題 {index}: {getExerciseQuestion(type)}</h2>
 			<ul className="flex flex-col gap-3 font-normal text-lg divide-y">
 				{Children.toArray(exercises.map(renderExercise))}

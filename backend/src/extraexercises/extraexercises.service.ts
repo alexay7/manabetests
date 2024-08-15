@@ -144,7 +144,7 @@ export class ExtraexercisesService {
   }
 
   async batchCorrectExercises(answers:{questionId:Types.ObjectId,answer:Record<number,number>}[]){
-    const result:{questionId:string, correct:boolean, explanation?:string,type:string}[] = []
+    const result:{questionId:string, isCorrect:boolean, explanation?:string,type:string, question: string, answers:string[],correct:number,answered:number}[] = []
 
     // The questionId will be the _id of the exercise + the index of the question in the array
     await Promise.all(answers.map(async (answer)=>{
@@ -154,9 +154,9 @@ export class ExtraexercisesService {
 
       found.questions.forEach((question,index)=>{
         if(question.correct === answer.answer[index]){
-          result.push({questionId:`${answer.questionId}-${index}`,correct:true,explanation:question.explanation,type:found.type})
+          result.push({questionId:`${answer.questionId}-${index}`,isCorrect:true,explanation:question.explanation,type:found.type,question:question.question,answers:question.answers,correct:question.correct,answered:answer.answer[index]})
         }else{
-          result.push({questionId:`${answer.questionId}-${index}`,correct:false,explanation:question.explanation,type:found.type})
+          result.push({questionId:`${answer.questionId}-${index}`,isCorrect:false,explanation:question.explanation,type:found.type,question:question.question,answers:question.answers,correct:question.correct,answered:answer.answer[index]})
         }
       })
     }))
