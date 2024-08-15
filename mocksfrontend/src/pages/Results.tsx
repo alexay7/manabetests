@@ -199,12 +199,10 @@ export default function Results(): React.ReactElement {
                     {checkPassFail(topCats,result.level) ? (
                         <div className="flex gap-8">
                             <p>合格</p>
-                            <p>Aprobado</p>
                         </div>
                     ) : (
                         <div className="flex gap-8">
                             <p>不合格</p>
-                            <p>Suspenso</p>
                         </div>
                     )}
                 </div>

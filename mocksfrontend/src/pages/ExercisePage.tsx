@@ -69,7 +69,7 @@ export default function ExercisePage({exercises,index,previousExercises}:Exercis
 								<ul className="flex flex-wrap gap-x-8 gap-y-2">
 									{Children.toArray(question.answers.map((answer,ansI)=>(
 										<li className="group">
-											<label style={{textDecorationThickness:"2px"}} className={twMerge("flex gap-2 group-hover:underline",(exam.sections[section].answers[question._id]===ansI+1 ? "underline":""))} htmlFor={`question-${question._id}-${ansI}`}><span>{ansI+1}</span> {answer}</label>
+											<p style={{textDecorationThickness:"2px"}} className={twMerge("flex gap-2",(exam.sections[section].answers[question._id]===ansI+1 ? "underline":""))}><span>{ansI+1}</span> {answer}</p>
 										</li>
 									)))}
 								</ul>
