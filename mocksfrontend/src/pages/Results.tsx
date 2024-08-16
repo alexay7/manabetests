@@ -219,7 +219,7 @@ export default function Results(): React.ReactElement {
     }
 
     function colorAnswer(index: number, correct: number, user: number) {
-        if (index === correct) {
+        if (index === correct-1) {
             return "border-green-500 border-b-2 border-solid"
         }
         if (index === user) {
