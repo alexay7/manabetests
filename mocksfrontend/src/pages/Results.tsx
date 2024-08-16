@@ -261,11 +261,12 @@ export default function Results(): React.ReactElement {
                                         </div>
                                         <ul className="flex flex-wrap gap-x-8 gap-y-2">
                                             {Children.toArray(exercise.answers.map((answer, ansI) => (
-                                                <li className="text-base">
+                                                <li className="text-base flex flex-col gap-1">
                                                     <p style={{ textDecorationThickness: "2px" }} className={twMerge("flex gap-2", colorAnswer(ansI, exercise.correct, exercise.answered))}><span>{ansI + 1}</span> {answer}</p>
                                                 </li>
                                             )))}
                                         </ul>
+                                        <p className="text-sm text-left">&gt;&gt; {exercise.explanation}</p>
                                     </li>
                                 )))}
                             </ul>
