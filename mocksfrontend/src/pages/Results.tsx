@@ -218,22 +218,6 @@ export default function Results(): React.ReactElement {
         )
     }
 
-    {
-        "questionId": "621b8d404cd83f1ab4009742",
-        "isCorrect": true,
-        "explanation": "死亡 [しぼう]:\nDeath, mortality\nTo die, to pass away\n\n会議の途中で､社長が突然 死亡したというニュースが伝えられ､社員は深い悲しみに沈んだ｡\nIn the middle of the meeting, the news that the president suddenly died was reported, and the employees sank in deep sadness.\n",
-        "type": "kanji",
-        "question": "会議の途中で､社長が突然 *死亡*したというニュースが伝えられ､社員は深い悲しみに沈んだ｡",
-        "answers": [
-            "しどう",
-            "しぼう",
-            "しもう",
-            "ししょう"
-        ],
-        "correct": 2,
-        "answered": 2
-    },
-
     function colorAnswer(index: number, correct: number, user: number) {
         if (index === correct-1) {
             return "border-green-500 border-b-2 border-solid"
