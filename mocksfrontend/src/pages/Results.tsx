@@ -16,7 +16,8 @@ export default function Results(): React.ReactElement {
 
     useEffect(() => {
         if (results.length > 0) {
-            setChosenTest(results[0])
+            // Choose the last test
+            setChosenTest(results[results.length - 1])
         }
     }, [results])
 
