@@ -56,9 +56,13 @@ export default function AnswersPage({ categories, previousExercises, title }: An
 					<li className="w-full border-t-2 border-black border-solid">
 						<button className="bg-transparent border-none p-0 m-0 justify-center flex w-full focus:outline-none" onClick={() => {
 							if (playing) {
-								if (settings.strict && confirm("El audio no ha terminado, ¿estás seguro?")) {
-									setPage(i)
-									return
+								if (page != i && settings.strict) {
+									if(confirm("El audio no ha terminado, ¿estás seguro?")){
+										setPage(i)
+										return
+									}else{
+										return
+									}
 								}
 								setPage(i)
 								return
@@ -71,6 +75,18 @@ export default function AnswersPage({ categories, previousExercises, title }: An
 							{Children.toArray(cat.questions.map(question => (
 								<li className="grid grid-cols-4 divide-x-2 divide-black items-center" id={`${question._id + 1}`}>
 									<button className="text-center" onClick={() => {
+										if (playing) {
+											if (page != i && settings.strict) {
+												if(confirm("El audio no ha terminado, ¿estás seguro?")){
+												setPage(i)
+												return
+												}else{
+													return
+												}
+											}
+											setPage(i)
+											return
+										}
 										setPage(i)
 									}}>{question.index - previousExercises + 1}</button>
 									<ul className="flex justify-evenly col-span-3 h-full">
@@ -82,10 +98,14 @@ export default function AnswersPage({ categories, previousExercises, title }: An
 													<input className="hidden" onChange={(e) => {
 														if (e.target.checked) {
 															if (playing) {
-																if (page != i && settings.strict && confirm("El audio no ha terminado, ¿estás seguro?")) {
+																if (page != i && settings.strict) {
+																	if(confirm("El audio no ha terminado, ¿estás seguro?")){
 																	setPage(i)
 																	answerQuestion(section, question, i2 + 1)
 																	return
+																	}else{
+																		return
+																	}
 																}
 																setPage(i)
 																answerQuestion(section, question, i2 + 1)
