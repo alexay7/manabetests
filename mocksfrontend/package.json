@@ -32,6 +32,7 @@
     "react-hook-form": "^7.52.2",
     "react-photo-view": "^1.2.6",
     "react-resizable-panels": "^2.0.23",
+    "react-responsive": "^10.0.0",
     "react-router-dom": "^6.26.0",
     "react-timer-hook": "^3.0.7",
     "tailwind-merge": "^2.5.2",
