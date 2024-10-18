@@ -1,4 +1,3 @@
-import { Diagnostic } from './../../../mocksfrontend/node_modules/typescript/lib/typescript.d';
 import { Types } from 'mongoose';
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
