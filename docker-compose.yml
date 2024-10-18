@@ -1,0 +1,32 @@
+# Docker compose file for running the application
+
+services:
+  # NestJS backend
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./backend:/app
+    environment:
+      - PORT=3000
+      - MONGO_URL=mongodb://192.168.1.136:27017/Migii
+    networks:
+      - manabetests
+  frontend:
+    build:
+      context: ./mocksfrontend
+      dockerfile: Dockerfile
+    ports:
+      - "3001:3000"
+    volumes:
+      - ./frontend:/app
+    depends_on:
+      - backend
+    networks:
+      - manabetests
+networks:
+  manabetests:
+    driver: bridge
