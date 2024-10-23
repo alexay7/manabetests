@@ -9,6 +9,7 @@ import Exam from './pages/Exam.tsx'
 import { Toaster } from '@/components/ui/toaster.tsx'
 import Results from '@/pages/Results.tsx'
 import { PhotoProvider } from 'react-photo-view';
+import { TooltipProvider } from '@/components/ui/tooltip.tsx';
 
 const queryClient = new QueryClient()
 
@@ -34,10 +35,12 @@ const router = createBrowserRouter([
 createRoot(document.getElementById('root')!).render(
 	<StrictMode>
 		<Toaster/>
+		<TooltipProvider>
 		<PhotoProvider>
 			<QueryClientProvider client={queryClient}>
 				<RouterProvider router={router} />
 			</QueryClientProvider>
 		</PhotoProvider>
+		</TooltipProvider>
 	</StrictMode>,
 )
