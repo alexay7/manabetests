@@ -12,7 +12,7 @@ module.exports = {
         "N2": "#3B82F6",
         "N1": "#EC4899",
         "main": "#afdab8",
-        "main-dark": "#308054"
+        "main-dark": "#00C189"
       }
     },
   },

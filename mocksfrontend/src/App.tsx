@@ -271,7 +271,7 @@ export default function App() {
 				<div className="flex w-full justify-between flex-col md:flex-row gap-2">
 					<Button>Generar examen</Button>
 					<Dialog>
-				<DialogTrigger style={{borderColor:"black"}}>Pegar código de examen</DialogTrigger>
+				<DialogTrigger className='border border-black rounded-md px-3 hover:bg-white/70 transition-colors'>Pegar código de examen</DialogTrigger>
 				<DialogContent>
 					<DialogHeader>
 					<DialogTitle>Introduce el código de examen</DialogTitle>
@@ -291,9 +291,9 @@ export default function App() {
 				</Dialog>
 				</div>
 			</form>
-			<div className="flex justify-end gap-4">
+			<div className="flex justify-end gap-4 items-center">
 			<a href="https://manabe.es/" className="flex justify-center items-center">
-				<ManabeIcon className='text-[#636ef6]' width={50} height={50}/>
+				<ManabeIcon className='text-[#00c189]' width={50} height={50}/>
 			</a>
 			<a href="https://discord.gg/y8P7mpDTcB" className="flex justify-center items-center">
 				<DiscordIcon className='text-[#636ef6]' width={50} height={50}/>
