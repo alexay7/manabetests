@@ -135,7 +135,7 @@ export default function App() {
 			})
 			return;
 		}
-
+		try{
 		const data = b64DecodeUnicode(examCode)
 
 		const exam = JSON.parse(data) as {sections: Record<number, {
@@ -165,6 +165,14 @@ export default function App() {
 		setLastStrict(exam.strict)
 
 		navigate("/test")
+	}catch(e){
+		toast({
+			title:"Error al crear el examen",
+			description: "Código de examen inválido",
+			variant:"destructive"
+		})
+		return;
+	}
 	}
 
 	return (
@@ -269,9 +277,31 @@ export default function App() {
 				
 
 				<div className="flex w-full justify-between flex-col md:flex-row gap-2">
-					<Button>Generar examen</Button>
+					<Button onClick={(e)=>{
+						if(!username?.length){
+							toast({
+								title:"Error al generar examen",
+								description: "Introduce tu nombre antes de iniciar el examen",
+								variant:"destructive"
+							})
+							e.preventDefault()
+							e.stopPropagation();
+							return;
+						}
+					}}>Generar examen</Button>
 					<Dialog>
-				<DialogTrigger className='border border-black rounded-md px-3 hover:bg-white/70 transition-colors'>Pegar código de examen</DialogTrigger>
+				<DialogTrigger className='border border-black rounded-md px-4 py-2 text-sm hover:bg-white/70 transition-colors font-medium' onClick={(e)=>{
+					if(!username?.length){
+						toast({
+							title:"Error al generar examen",
+							description: "Introduce tu nombre antes de iniciar el examen",
+							variant:"destructive"
+						})
+						e.preventDefault()
+						e.stopPropagation();
+						return;
+					}
+				}}>Pegar código de examen</DialogTrigger>
 				<DialogContent>
 					<DialogHeader>
 					<DialogTitle>Introduce el código de examen</DialogTitle>
