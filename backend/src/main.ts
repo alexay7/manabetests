@@ -12,6 +12,8 @@ async function bootstrap() {
     prefix: '/media',
   });
 
+  console.log(process.env.MONGO_URL)
+
   // Allow all cors
   app.enableCors({
     origin: '*',
