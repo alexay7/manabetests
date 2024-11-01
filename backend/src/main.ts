@@ -12,7 +12,12 @@ async function bootstrap() {
     prefix: '/media',
   });
 
-  app.enableCors();
+  // Allow all cors
+  app.enableCors({
+    origin: '*',
+    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+    allowedHeaders: 'Content-Type, Accept',
+  })
 
   await app.listen(process.env.PORT || 3000);
 }
