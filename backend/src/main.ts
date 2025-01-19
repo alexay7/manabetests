@@ -12,10 +12,14 @@ async function bootstrap() {
     prefix: '/media',
   });
 
-  // Allow all cors
-  // app.enableCors({
-  //   origin: '*'
-  // })
+  // Allow all cors from jlpt.manabe.es and renshuu.manabe.es
+  app.enableCors({
+    origin: [
+      'https://jlpt.manabe.es',
+      'https://renshuu.manabe.es',
+      'http://localhost:5173',
+    ],
+  });
 
   await app.listen(process.env.PORT || 3000);
 }
