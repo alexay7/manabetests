@@ -12,12 +12,10 @@ async function bootstrap() {
     prefix: '/media',
   });
 
-  console.log(process.env.MONGO_URL)
-
   // Allow all cors
-  app.enableCors({
-    origin: '*'
-  })
+  // app.enableCors({
+  //   origin: '*'
+  // })
 
   await app.listen(process.env.PORT || 3000);
 }
