@@ -54,15 +54,42 @@ export default function Kanas():React.ReactElement{
 
     const [question,setQuestion] = useState<{question:string, answers:string[],audio:string}|undefined>(undefined);
     const [answer, setAnswer] = useState<string>("");
-    const [kanaModes, setKanaModes] = useState<KanaModesKeys[]>(["hirabasic-a"]);
+    const [kanaModes, setKanaModes] = useState<KanaModesKeys[]>(() => {
+        // Get the kana modes from localStorage or default to an empty array
+        const storedModes = localStorage.getItem("kanaModes");
+        if (storedModes) {
+            try {
+                return JSON.parse(storedModes) as KanaModesKeys[];
+            } catch (e) {
+                console.error("Error parsing kana modes from localStorage:", e);
+                return [];
+            }
+        }
+        return [];
+    });
     const [showOptions, setShowOptions] = useState<"hiragana"|"katakana">("hiragana");
     const [wrong,setWrong]=useState(false);
+    const [volume,setVolume]=useState(() => {
+        // Get the volume from localStorage or default to 0.5
+        const storedVolume = localStorage.getItem("volume");
+        if (storedVolume) {
+            try {
+                return JSON.parse(storedVolume) as number;
+            } catch (e) {
+                console.error("Error parsing volume from localStorage:", e);
+                return 0.5; // Default volume
+            }
+        }
+        return 0.5; // Default volume
+    })
 
     const [openModes,setOpenModes]=useState(true);
 
     const inputRef = useRef<HTMLInputElement>(null);
 
     useEffect(()=>{
+        if(!kanaModes.length)return;
+
         if(!question){
             const randomQuestion = getQuestion(kanaModes,);
 
@@ -74,6 +101,16 @@ export default function Kanas():React.ReactElement{
             }
         }
     },[question,kanaModes]);
+
+    useEffect(() => {
+        if (!kanaModes.length) return;
+    //     Save the kana modes in localStorage
+        localStorage.setItem("kanaModes", JSON.stringify(kanaModes));
+    }, [kanaModes]);
+
+    useEffect(()=>{
+        localStorage.setItem("volume", JSON.stringify(volume));
+    },[volume]);
 
     async function checkAnswer(e:ChangeEvent<HTMLInputElement>):Promise<void>{
         e.preventDefault();
@@ -89,9 +126,13 @@ export default function Kanas():React.ReactElement{
 
             const audio = new Audio(url);
 
+            audio.volume = volume;
+
             audio.currentTime = 0.4;
 
-            await audio.play();
+            audio.play().catch((err)=>{
+                console.error("Error playing audio:", err);
+            });
 
             if(studyMode){
                 addToAnswers(question.question,!wrong)
@@ -198,6 +239,16 @@ export default function Kanas():React.ReactElement{
                     <HomeIcon className="text-main-dark w-12 bg-white border-main-dark border-2 rounded-full p-2"/>
                 </Link>
             </div>
+            {/*Volume slider*/}
+            <div className="w-3/4 mx-auto flex justify-center items-center gap-2 bg-white px-4 py-2 rounded-lg shadow-lg">
+                <label htmlFor="volume" className="text-lg font-semibold">音量:</label>
+                <input className="accent-main-dark" id="volume" type="range" min={0} max={1} step={0.01} value={volume} onChange={(e)=>{
+                    const newVolume = parseFloat(e.target.value);
+                    setVolume(newVolume);
+                }}
+                />
+                <span className="text-lg font-semibold">{(volume*100).toFixed(0)}%</span>
+            </div>
             <div className="my-4 flex justify-center flex-col items-center gap-4">
                 <div className="bg-white w-3/4 p-4 rounded-lg text-center relative shadow-lg">
                     <IconButton className="absolute top-2 right-2" onClick={()=>{
@@ -206,8 +257,10 @@ export default function Kanas():React.ReactElement{
                         const url = `/sounds/${question.audio}.mp3`;
 
                         const audio = new Audio(url);
-
-                        void audio.play()
+                        audio.volume = volume;
+                        audio.play().catch((err)=>{
+                            console.error("Error playing audio:", err);
+                        });
                     }}
                     >
                         <VolumeUp/>
