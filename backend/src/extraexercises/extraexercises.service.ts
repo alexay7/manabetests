@@ -22,6 +22,7 @@ export class ExtraexercisesService {
     questionNum: number,
     hideAnswers?: boolean,
   ): Promise<ExtraExerciseDocument[]> {
+    if (questionNum === 0) return [];
     const pipe = this.extraExerciseModel
       .aggregate()
       .match({ level: level, type: { $in: sections } })

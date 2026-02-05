@@ -17,6 +17,7 @@ export class ExercisesService {
     category: string,
     questionNum: number,
   ): Promise<ExerciseDocument[]> {
+    if (questionNum === 0) return [];
     return this.exerciseModel
       .aggregate()
       .match({ level: level, category: category })
@@ -31,6 +32,7 @@ export class ExercisesService {
     questionNum: number,
     hideAnswers?: boolean,
   ): Promise<ExerciseDocument[]> {
+    if (questionNum === 0) return [];
     const pipe = this.exerciseModel
       .aggregate()
       .match({ level: level, type: { $in: sections } })
@@ -177,7 +179,7 @@ export class ExercisesService {
       distributions.parafrases,
       true
     );
-    
+
     let ortografiaQuestions = await this.generateSectionTest(
       level,
       ['ortografia'],
