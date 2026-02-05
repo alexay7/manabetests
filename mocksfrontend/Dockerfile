@@ -1,6 +1,6 @@
-# Dockerfile for vite frontend node 21
+# Dockerfile for vite frontend node 22
 
-FROM node:21-alpine
+FROM node:22-alpine
 
 # Create app directory
 WORKDIR /usr/src/app
