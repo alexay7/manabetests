@@ -41,7 +41,7 @@ export const levelData = {
 	parafrases:{
 		"name":"言い換え類義",
 		"spanish_name":"Parafrases",
-		"description":"_____の言葉に意味が最も近ものを、１・２・３・４から一つ選びなさい。",
+		"description":"_____の言葉に意味が最も近いものを、１・２・３・４から一つ選びなさい。",
 		"title":{
 			"preN3":"言語知識（文字・語彙）",
 			"postN3":"言語知識（文字・語彙・文法）・読解"

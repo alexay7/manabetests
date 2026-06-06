@@ -22,7 +22,7 @@ export const levelData = {
     parafrases:{
         "name":"言い換え類義",
         "spanish_name":"Parafrases",
-        "description":"_____の言葉に意味が最も近ものを、１・２・３・４から一つ選びなさい。"
+        "description":"_____の言葉に意味が最も近いものを、１・２・３・４から一つ選びなさい。"
     },
     uso:{
         "name":"用法",
